@@ -1,1 +1,391 @@
-<h1>iGainMax Coming Soon! 🚀</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iGainMax — Study Tracker by MOMENTUM</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #FFD700;
+  --gold2: #FFA500;
+  --dark: #0a0a0f;
+  --dark2: #0f0f1a;
+  --dark3: #141428;
+  --card: #1a1a2e;
+  --card2: #16213e;
+  --accent: #00d4ff;
+  --accent2: #7b2fff;
+  --green: #00ff88;
+  --red: #ff4466;
+  --text: #e8e8f0;
+  --muted: #8888aa;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: 'Exo 2', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: 
+    radial-gradient(ellipse at 20% 50%, rgba(123,47,255,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(0,212,255,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 80%, rgba(255,215,0,0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.container { max-width: 480px; margin: 0 auto; padding: 0 16px; position: relative; z-index: 1; }
+.header { text-align: center; padding: 40px 0 30px; animation: fadeDown 0.8s ease; }
+.logo-wrap { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.logo-icon { width: 52px; height: 52px; background: linear-gradient(135deg, var(--gold), var(--gold2)); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 28px; box-shadow: 0 0 30px rgba(255,215,0,0.3); }
+.logo-text { font-family: 'Rajdhani', sans-serif; font-size: 36px; font-weight: 700; background: linear-gradient(135deg, var(--gold), var(--gold2), #fff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px; }
+.tagline { font-size: 13px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; font-weight: 300; }
+.momentum-badge { display: inline-block; margin-top: 12px; padding: 4px 14px; border: 1px solid rgba(255,215,0,0.3); border-radius: 20px; font-size: 11px; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; }
+.banner { background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,165,0,0.05)); border: 1px solid rgba(255,215,0,0.2); border-radius: 16px; padding: 16px 20px; margin-bottom: 24px; text-align: center; animation: fadeUp 0.8s ease 0.2s both; }
+.banner-emoji { font-size: 24px; margin-bottom: 6px; }
+.banner-title { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
+.banner-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.section-title { font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 600; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.section-title::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+.leaderboard { margin-bottom: 28px; animation: fadeUp 0.8s ease 0.3s both; }
+.lb-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
+.lb-tab { padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid rgba(255,255,255,0.1); color: var(--muted); background: transparent; transition: all 0.2s; font-family: 'Exo 2', sans-serif; }
+.lb-tab.active { background: linear-gradient(135deg, var(--gold), var(--gold2)); color: #000; border-color: transparent; }
+.lb-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 12px; margin-bottom: 8px; background: var(--card); border: 1px solid rgba(255,255,255,0.04); transition: transform 0.2s; }
+.lb-item:hover { transform: translateX(4px); }
+.lb-item.top1 { background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,165,0,0.05)); border-color: rgba(255,215,0,0.2); }
+.lb-item.top2 { background: linear-gradient(135deg, rgba(192,192,192,0.1), rgba(192,192,192,0.03)); border-color: rgba(192,192,192,0.15); }
+.lb-item.top3 { background: linear-gradient(135deg, rgba(205,127,50,0.1), rgba(205,127,50,0.03)); border-color: rgba(205,127,50,0.15); }
+.lb-rank { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; width: 32px; text-align: center; }
+.lb-info { flex: 1; }
+.lb-name { font-family: 'Share Tech Mono', monospace; font-size: 15px; color: var(--text); margin-bottom: 2px; }
+.lb-meta { font-size: 11px; color: var(--muted); }
+.lb-points { font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; color: var(--gold); text-align: right; }
+.lb-pts-label { font-size: 10px; color: var(--muted); text-align: right; }
+.lookup-card { background: var(--card); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: 24px; margin-bottom: 24px; animation: fadeUp 0.8s ease 0.4s both; }
+.lookup-title { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+.lookup-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
+.input-wrap { position: relative; margin-bottom: 12px; }
+.input-wrap input { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 14px 16px; color: var(--text); font-family: 'Share Tech Mono', monospace; font-size: 18px; text-align: center; letter-spacing: 4px; outline: none; transition: all 0.2s; }
+.input-wrap input:focus { border-color: var(--gold); background: rgba(255,215,0,0.05); box-shadow: 0 0 20px rgba(255,215,0,0.1); }
+.input-wrap input::placeholder { color: rgba(255,255,255,0.2); letter-spacing: 2px; font-size: 14px; }
+.btn-lookup { width: 100%; padding: 14px; background: linear-gradient(135deg, var(--gold), var(--gold2)); border: none; border-radius: 12px; color: #000; font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: 2px; cursor: pointer; transition: all 0.2s; text-transform: uppercase; }
+.btn-lookup:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,215,0,0.3); }
+.result-card { display: none; background: linear-gradient(135deg, var(--card2), var(--card)); border: 1px solid rgba(255,215,0,0.2); border-radius: 20px; padding: 24px; margin-bottom: 24px; animation: fadeUp 0.5s ease; }
+.result-card.show { display: block; }
+.result-greeting { font-size: 13px; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 2px; }
+.result-name { font-family: 'Rajdhani', sans-serif; font-size: 28px; font-weight: 700; color: var(--text); margin-bottom: 20px; }
+.stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.stat-box { background: rgba(255,255,255,0.04); border-radius: 12px; padding: 14px; text-align: center; border: 1px solid rgba(255,255,255,0.04); }
+.stat-value { font-family: 'Rajdhani', sans-serif; font-size: 28px; font-weight: 700; background: linear-gradient(135deg, var(--gold), var(--gold2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; margin-bottom: 4px; }
+.stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+.points-breakdown { background: rgba(0,212,255,0.05); border: 1px solid rgba(0,212,255,0.1); border-radius: 12px; padding: 12px 16px; margin-bottom: 16px; font-size: 12px; color: var(--muted); line-height: 1.8; }
+.points-breakdown span { color: var(--accent); font-weight: 600; }
+.rank-badge { background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,165,0,0.05)); border: 1px solid rgba(255,215,0,0.2); border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.rank-text { font-size: 13px; color: var(--muted); }
+.rank-value { font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700; color: var(--gold); }
+.btn-save { width: 100%; padding: 12px; background: linear-gradient(135deg, var(--accent2), var(--accent)); border: none; border-radius: 10px; color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: all 0.2s; }
+.btn-save:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(123,47,255,0.3); }
+.success-msg { display: none; text-align: center; padding: 16px; background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.2); border-radius: 12px; color: var(--green); font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 600; }
+.success-msg.show { display: block; }
+.error-msg { display: none; text-align: center; padding: 12px; background: rgba(255,68,102,0.08); border: 1px solid rgba(255,68,102,0.2); border-radius: 10px; color: var(--red); font-size: 13px; margin-top: 10px; }
+.error-msg.show { display: block; }
+.footer { text-align: center; padding: 30px 0 40px; animation: fadeUp 0.8s ease 0.6s both; }
+.footer-text { font-size: 12px; color: var(--muted); line-height: 1.8; }
+.footer-logo { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
+@keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+.particle { position: fixed; width: 2px; height: 2px; background: var(--gold); border-radius: 50%; pointer-events: none; opacity: 0; animation: float linear infinite; }
+@keyframes float { 0% { transform: translateY(100vh); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.3; } 100% { transform: translateY(-100px); opacity: 0; } }
+</style>
+</head>
+<body>
+<div id="particles"></div>
+<div class="container">
+  <div class="header">
+    <div class="logo-wrap">
+      <div class="logo-icon">🏆</div>
+      <div class="logo-text">iGainMax</div>
+    </div>
+    <div class="tagline">Study Smarter. Earn More.</div>
+    <div class="momentum-badge">⚡ MOMENTUM Jabalpur</div>
+  </div>
+
+  <div class="banner">
+    <div class="banner-emoji">🚀</div>
+    <div class="banner-title">New Session. New System. New You.</div>
+    <div class="banner-text">Your hard work from last session is already counted!<br>Enter your Student ID to see your score 👇</div>
+  </div>
+
+  <div class="leaderboard">
+    <div class="section-title">🏆 Top Scorers — Last Session</div>
+    <div id="lb-list"></div>
+    <div style="text-align:center; padding: 12px; font-size: 12px; color: var(--muted);">
+      👀 Who are these mystery students?<br>Enter your ID below to reveal YOUR rank!
+    </div>
+  </div>
+
+  <div class="lookup-card">
+    <div class="lookup-title">🔍 Find Your Score</div>
+    <div class="lookup-subtitle">Enter your 5-digit Student ID to see your opening points from last session!</div>
+    <div class="input-wrap">
+      <input type="number" id="studentId" placeholder="Your Student ID" maxlength="5" oninput="if(this.value.length>5)this.value=this.value.slice(0,5)">
+    </div>
+    <button class="btn-lookup" onclick="lookupStudent()">REVEAL MY SCORE ⚡</button>
+    <div class="error-msg" id="errorMsg">Student ID not found. Please check and try again.</div>
+  </div>
+
+  <div class="result-card" id="resultCard">
+    <div class="result-greeting">Welcome back,</div>
+    <div class="result-name" id="resultName">—</div>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-value" id="resultPoints">0</div>
+        <div class="stat-label">🏆 Opening Points</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value" id="resultExercises">0</div>
+        <div class="stat-label">📚 Exercises Done</div>
+      </div>
+    </div>
+    <div class="points-breakdown" id="pointsBreakdown"></div>
+    <div class="rank-badge">
+      <div class="rank-text">Your Rank in Batch</div>
+      <div class="rank-value" id="resultRank">—</div>
+    </div>
+    <div style="text-align:center; padding:16px; background:rgba(255,215,0,0.05); border:1px solid rgba(255,215,0,0.1); border-radius:12px; margin-top:4px;">
+      <div style="font-size:24px; margin-bottom:6px;">📱</div>
+      <div style="font-family:'Rajdhani',sans-serif; font-size:18px; font-weight:700; color:var(--gold); margin-bottom:6px;">Full App Coming Soon!</div>
+      <div style="font-size:12px; color:var(--muted); line-height:1.8;">Nicknames • Leaderboard • Badges • Leagues<br>Streaks • Parent View • Notifications<br><br><span style="color:var(--accent); font-size:13px;">igainmax.in</span></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo">iGainMax</div>
+    <div class="footer-text">
+      Powered by GainMax Educare — an Extra Service Associate<br>
+      Full app coming soon 📱<br>
+      <span style="color: rgba(255,215,0,0.4);">igainmax.in</span>
+    </div>
+  </div>
+</div>
+
+<script>
+// STUDENT DATA — Points calculated as: NCERT×11 + NonNCERT×21
+// Format: [StudentID, Name, TotalExercises, Points, NCERTCount, NonNCERTCount]
+const students = [
+  [29807,"ARPITA NAGIA",55,830,17,38],[29826,"AKSHAY NAMDEO",21,318,6,15],
+  [29828,"UDAY BHATNAGAR",29,417,15,14],[29829,"SWASTIK GARG",56,1026,15,41],
+  [29852,"SHRUTI KUMARI",20,223,5,15],[29857,"SUPRIYA GAUTAM",126,2336,31,95],
+  [29858,"MANAS PANDEY",14,264,3,11],[29873,"NIKHIL CHOUDHARY",46,784,15,31],
+  [29878,"SAMARTH SAHU",53,933,18,35],[29884,"CHAITANYA SINGH",69,1229,22,47],
+  [29887,"SATVIK PALI",50,429,19,31],[29893,"TUMEW UIKE",15,234,5,10],
+  [29895,"ADITYA RANJAN",92,1682,25,67],[29898,"SHAMBHAVI",75,1354,17,58],
+  [29899,"ANJALI YADAV",52,723,19,33],[29900,"ARPIT SAHU",100,1880,22,78],
+  [29903,"AMBIKA BHATT",41,608,19,22],[29904,"RIZAK SINGH ANAND",22,312,5,17],
+  [29908,"HARSH SINGH MARAVI",31,609,2,29],[29912,"AKSHITA KANOJIYA",28,486,5,23],
+  [29916,"LOKENDRA SINGH DHUMKETI",6,106,2,4],[29923,"SUMIT SAHU",43,833,7,36],
+  [29935,"DESHIK KUSHWAHA",2,32,1,1],[29937,"RISHITA MEENA",2,22,2,0],
+  [29938,"RAJEEV MEENA",16,236,10,6],[29941,"ABHIJEET JHA",26,416,13,13],
+  [29942,"ANURAG SINGH JADON",20,309,7,13],[29947,"YUVRAJ ARYAN",59,979,26,33],
+  [29950,"NEELANJANA SINGH",76,1351,25,51],[29951,"AKSHAT SAHU",0,0,0,0],
+  [29954,"PRAKHAR PATEL",30,467,10,17],[29956,"AKSHIT MALVIYA",34,574,14,20],
+  [29982,"SANCHIT DUBEY",68,1338,9,59],[29983,"SHOURYA SHARMA",63,1193,13,50],
+  [29992,"ARPIT KUMAR SINGH",6,116,1,5],[29997,"KARTIK SINGH",29,383,10,19],
+  [30005,"AKSHRA BADONIYA",21,411,3,18],[30006,"ATHARVA SINGH BHADORIYA",41,831,3,38],
+  [30012,"SHOURYA JAIN",70,1280,19,51],[30014,"AKSHAT SHRIVASTAVA",30,484,7,23],
+  [30016,"ARJIT CHOURASIA",91,1811,10,81],[30017,"ARYAN RAJ",52,962,13,39],
+  [30019,"AARAV KANSAL",9,107,4,5],[30021,"SATVIK BHATT",26,466,8,18],
+  [30023,"AYUSHMAN LODHI",64,1144,20,44],[30027,"AKARSH KUMAR",87,1587,24,63],
+  [30034,"DEV KUMAR GUPTA",99,1829,25,74],[30040,"RISHAV NATH",33,653,4,29],
+  [30043,"SHAURYA RAJPUT",54,899,19,35],[30051,"TANISHQ JAISWAL",25,405,12,13],
+  [30052,"ANUSHKA JAISWAL",20,340,8,12],[30064,"MONISHA SINGH",61,1045,11,50],
+  [30066,"AADITI SHARMA",45,588,17,28],[30073,"PRISHA SAHU",15,265,5,10],
+  [30098,"NEET RATHORE",15,275,4,11],[30103,"DEVANSH SHARMA",22,382,8,14],
+  [30105,"ANUJ PATEL",8,138,3,5],[30106,"PURU JAIN",25,505,2,23],
+  [30118,"DEVANSH KUMAR OJHA",90,1630,26,64],[30127,"ABHYAN CHOURASIA",83,1503,24,59],
+  [30218,"KUSHAGRA JAIN",0,0,0,0],[30220,"SOUMIL GALIYA",2,43,1,1],
+  [30239,"ARYAN CHOUKSEY",12,242,1,11],[30246,"AARNA JAIN",42,812,7,35],
+  [30248,"SAMRIDHI LAKHMANI",9,189,0,9],[30249,"SURYANSH TIWARI",15,285,3,12],
+  [30255,"AARYA SARAWGI",35,596,14,21],[30258,"ANUBHAV TIWARI",61,1040,23,38],
+  [30260,"AARADHY TRIPATHI",16,286,5,11],[30266,"PRAKHAR PENDKE",24,419,4,20],
+  [30267,"ANSHIKA DANI",33,417,15,18],[30268,"DIVY SHARMA",29,469,12,17],
+  [30270,"NIKUNJ SHRIVASTAVA",48,833,9,39],[30287,"ANVARAT MALVIYA",1,11,1,0],
+  [30288,"SANYOG CHOUDHARY",32,572,10,22],[30289,"OM PRADHAN",8,109,4,4],
+  [30291,"MOHSIN IMAM",97,1697,34,63],[30292,"MD ANAS ALAM",17,247,11,6],
+  [30294,"SRIJAN CHACHONDIYA",12,222,3,9],[30352,"AYANSH SHARMA",65,1155,21,44],
+  [30360,"ATULYA BAJPAI",56,986,19,37],[30362,"AARYAN SHROTI",75,1268,11,64],
+  [30368,"ATHARV SARAWGI",41,731,13,28],[30372,"SONAKSHI TALWANI",87,1627,20,67],
+  [30373,"AKSHARA SAHU",57,1047,15,42],[30374,"DEEPIKA JAISWAL",40,680,16,24],
+  [30375,"AANYA JAIN",110,2240,7,103],[30376,"SHRIYANSHI CHAKRAWARTY",118,2168,31,87],
+  [30377,"MRUNAL DIMKE",51,831,24,27],[30379,"BHAVYA SHREE",102,1872,27,75],
+  [30382,"ANSHIKA NANDAN",52,902,19,33],[30392,"PRIYANSHI NEMA",53,983,13,40],
+  [30394,"AYUSHI BHOYAR",12,242,1,11],[30395,"AARNAV AGRAWAL",127,2377,29,98],
+  [30397,"DIVYANSH SAGAR MARAVI",35,595,14,21],[30806,"TANMAY KANOUJIYA",45,825,12,33],
+  [30807,"GODWIN ABRAHAM MATHEWS",36,596,16,20],[30811,"AYUSH ROY",79,1449,23,56],
+  [30812,"ANMOL SHRIVASTAVA",4,84,0,4],[30813,"AMEY VIKRAM PACHORI",104,1924,26,78],
+  [30815,"DIVYANSH SHRIVASTAVA",99,1839,24,75],[30816,"AARUSH BHASIN",116,2096,34,82],
+  [30817,"ANUSHREE MANDAL",15,315,0,15],[30818,"ARYA SINGH PARIHAR",5,105,0,5],
+  [30819,"SUHANI SHRIVASTAVA",26,506,4,22],[30820,"RAZAB AHMED RIZWANI",38,668,13,25],
+  [30821,"VASU SHRIVASTAVA",30,630,0,30],[30822,"RIDAM VISHWAKARMA",30,630,0,30],
+  [30828,"VANSHIKA ASRANI",66,1166,22,44],[30830,"CHESHTA VASWANI",38,728,7,31],
+  [30832,"SHUBH GUPTA",35,735,0,35],[30833,"TAKSH VIGYAN LAKHERA",22,462,0,22],
+  [30834,"SHREYA KOSHTA",55,1005,15,40],[30837,"SHEERSH TIWARI",107,1977,27,80],
+  [30838,"DEV KUMAR DUBEY",10,210,0,10],[30839,"SOHAM DIXIT",155,2825,43,112],
+  [30841,"ALANKRITA MISHRA",79,1459,20,59],[30842,"SAKSHAM MISHRA",21,441,0,21],
+  [30844,"GIRISH THAKUR",19,399,0,19],[30845,"ANUPRIYA BHADAURIA",33,693,0,33],
+  [30846,"SHREYA BEHRE",34,714,0,34],[30847,"ANANYA BHATIA",0,0,0,0],
+  [30848,"AANYA BHATIA",0,0,0,0],[30849,"SHRISHTI SINGH",27,567,0,27],
+  [30850,"ADARSH KOSHTA",15,315,0,15],[30851,"PALAK MULCHANDANI",46,776,19,27],
+  [30853,"ARYAN PATEL",30,630,0,30],[30860,"AAHWAAN JAIN",45,845,10,35],
+  [30861,"ARYAN JAIN",41,771,9,32],[30868,"ADITYA DUBEY",14,294,0,14],
+  [30869,"ARADHY SHUKLA",29,609,0,29],[30870,"PRAKHAR KARNE",18,378,0,18],
+  [30871,"VEDANSH KUTHAR",0,0,0,0],[30873,"ABHIVANDAN YADAV",15,315,0,15],
+  [30874,"SOHAM GUPTA",29,609,0,29],[30875,"ABHIJEET SINGH BAHRAWAT",76,1346,25,51],
+  [30876,"DIVYANSH JAISWAL",12,252,0,12],[30877,"NITYA GUNJAL",41,691,17,24],
+  [30879,"ASHUTOSH SAXENA",45,785,16,29],[30882,"KARTIKEY DWIVEDI",47,857,13,34],
+  [30883,"DARSHIT DUBEY",28,588,0,28],[30885,"ARUSH AGRAWAL",20,420,0,20],
+  [30886,"SHUBHANGI RAI",72,1322,19,53],[30901,"VAISHNAVI KOUSHAL",22,462,0,22],
+  [30909,"PRIYANSHU YADAV",26,546,0,26],[30917,"SHASHWAT BUDHOLIYA",7,147,0,7],
+  [30920,"SHAURYA NEMA",12,252,0,12],[30921,"AABHA VISHWAKARMA",47,847,14,33],
+  [30922,"AROH PATIL",28,588,0,28],[30924,"SAMIKSHA MISHRA",36,686,7,29],
+  [30926,"AAROHI JAT",34,594,12,22],[30929,"SANSKAR JHARIYA",11,231,0,11],
+  [30931,"ANANYA PATEL",22,462,0,22],[30933,"KUSHAGRA KHARE",1,21,0,1],
+  [30934,"ISHAAN SHRIVASTAVA",39,699,11,28],[30936,"MANJARI SINGH",38,758,4,34],
+  [30940,"SAHARSH SINHA",12,252,0,12],[30941,"ATHARVA YADAV",18,378,0,18],
+  [30952,"DHEEMANT SRIVASTAVA",21,441,0,21],[30953,"DEVANSH NAYAK",22,462,0,22],
+  [30957,"DIVYANSHI SINGH",40,720,12,28],[30958,"SHOURYA SINGH",33,693,0,33],
+  [30959,"POORV SATAWKAR",18,378,0,18],[30961,"SHANTANU SINGH",40,750,9,31],
+  [30967,"SRAJAN SHARMA",6,126,0,6],[30973,"OM BAJPAI",36,676,8,28],
+  [30981,"AARNA SHRIVASTAVA",20,420,0,20],[30982,"ARYA PACHORI",38,827,9,29],
+  [30986,"SARGUN SINGH",22,462,0,22],[30988,"SOUMYA TIWARI",13,273,0,13],
+  [30995,"ADITYA DUBEY",47,717,27,20],[30996,"SOUMY RAIKWAR",10,210,0,10],
+  [31002,"OM YADAV",19,399,0,19],[31005,"CHAITANYA RAJVANSH",0,0,0,0],
+  [31006,"AAHANA JHA",72,1152,36,36],[31012,"RAMANSHI RAJPOOT",48,888,12,36],
+  [31013,"SHLOK PANDEY",17,357,0,17],[31017,"NIDHI KUMARI",53,943,17,36],
+  [31018,"NIKHIL KUMAR",20,420,0,20],[31019,"TANVI SHARMA",48,986,11,37],
+  [31022,"SHREYA JAISWAL",5,105,0,5],[31023,"UDAY YADAV",12,252,0,12],
+  [31024,"VIHAAN KUMAR",0,0,0,0],[31026,"ANANYA",38,698,10,28],
+  [31027,"DAIWIK SINGH CHANDEL",2,42,0,2],[31028,"SAMEER KOSHTA",35,735,0,35],
+  [31029,"ANIKA SINGH",48,868,14,34],[31030,"SEJAL VERMA",45,865,8,37],
+  [31032,"PARTH PATEL",0,0,0,0],[31033,"SAMRIDDHI PAHARIA",42,822,6,36],
+  [31034,"ANANT SHIVHARE",13,273,0,13],[31035,"DEVANSH VARUN",30,630,0,30],
+  [31039,"ADITYA RAJ DUBEY",0,0,0,0],[31040,"DIVJOT KAUR JASSAL",56,1003,17,39],
+  [31042,"SONI MADHWANI",67,1187,22,45],[31044,"TANAY MAJHI",18,378,0,18],
+  [31045,"VIBHA JAISWAL",90,1590,30,60],[31046,"KANHA SHARMA",45,855,9,36],
+  [31047,"UPAMANYU DEY",23,483,0,23],[31048,"VAISHNAVI CHIKNE",5,105,0,5],
+  [31050,"ASHIKA JAIN",0,0,0,0],[31051,"ABHISHEK VERMA",16,336,0,16],
+  [31052,"AARAV WAJE",0,0,0,0],[31053,"AYUSHI NAMDEO",114,1984,41,73],
+  [31054,"VIDHI PATEL",92,1652,28,64],[31055,"ASHLESHA TIWARI",2,42,0,2],
+  [31056,"ABHINAV SHUKLA",8,168,0,8],[31057,"MOHAMMAD ZAYAN ANSARI",40,840,0,40],
+  [31060,"RITIK RAJ",3,63,0,3],[31061,"RITIKA DAHIYA",26,546,0,26],
+  [31066,"SURYANSH RAGHUWANSHI",13,273,0,13],[31095,"RISHIKA VISHWAKARMA",50,780,27,23],
+  [31098,"TANISHKA SINGH",13,273,0,13],[31102,"NITYA KRISHNAKANT HIRA",27,567,0,27],
+  [31103,"OMISHA TRIPATHI",18,378,0,18],[31107,"ARNAV RAJAK",18,378,0,18],
+  [31110,"AYUSHI RATHORE",24,504,0,24],[31111,"SUMEDH SAHU",5,105,0,5],
+  [31112,"SATYAM SWAMI",29,609,0,29],[31115,"DIVYANSHU SINGH",0,0,0,0],
+  [31118,"TANISHQ PATEL",0,0,0,0],[31120,"ADITI PRAJAPATI",24,504,0,24],
+  [31125,"SHUBHANSHI NORIYA",26,546,0,26],[31128,"NAMAN SAHU",7,147,0,7],
+  [31130,"VIBHOR BAVARIA",3,63,0,3],[31132,"ARPIT KUMAR PATEL",18,378,0,18],
+  [31135,"PARTH AGRAWAL",11,231,0,11],[31137,"MOHAMMAD ZAIN AMAAN KHAN",11,231,0,11],
+  [31139,"DHERYA JAIN",3,63,0,3],[31143,"GOURAV TIWARI",0,0,0,0],
+  [31144,"PRIYAMVADA MISHRA",8,168,0,8],[31145,"SHOURYA USRETE",2,42,0,2],
+  [31147,"NANCY PATLE",27,567,0,27],[31148,"ANHAD KAUR KHANUJA",68,1228,23,45],
+  [31149,"SURBHI SHRIVAS",8,168,0,8],[31159,"HARSH VISHWAKARMA",0,0,0,0],
+  [31162,"TEJAS KUMAR SINGH",0,0,0,0],[31163,"RAGHAV SEN",0,0,0,0],
+];
+
+const nicknameSuggestions = [
+  "DarkMatter","QuantumLeap","CosmicRay","NightOwl","MatrixBreaker",
+  "PhysicsWiz","MathsNinja","ChemLord","JEEWarrior","NeetChamp",
+  "Proton","Neutron","IITDreamer","TopRanker","SilentGenius",
+  "MomentumX","ThunderBolt","InfinityX","NovaStar","VortexPrime"
+];
+
+const mysteries = ['DarkMatter07','QuantumLeap','NightOwl_JEE','CosmicRay99',
+                   'MatrixBreaker','PhysicsNinja','MathsWiz42','ChemLord',
+                   'JEEWarrior21','SilentGenius'];
+
+const sorted = [...students].sort((a,b) => b[3]-a[3]);
+
+function buildLeaderboard() {
+  const list = document.getElementById('lb-list');
+  list.innerHTML = '';
+  const top10 = sorted.filter(s => s[3] > 0).slice(0, 10);
+  top10.forEach((s, i) => {
+    const rank = i + 1;
+    const rankEmoji = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`;
+    const cls = rank === 1 ? 'top1' : rank === 2 ? 'top2' : rank === 3 ? 'top3' : '';
+    list.innerHTML += `
+      <div class="lb-item ${cls}">
+        <div class="lb-rank">${rankEmoji}</div>
+        <div class="lb-info">
+          <div class="lb-name">${mysteries[i]}</div>
+          <div class="lb-meta">${s[2]} exercises • NCERT:${s[4]} | Other:${s[5]}</div>
+        </div>
+        <div>
+          <div class="lb-points">${s[3].toLocaleString()}</div>
+          <div class="lb-pts-label">pts</div>
+        </div>
+      </div>`;
+  });
+}
+
+function lookupStudent() {
+  const id = parseInt(document.getElementById('studentId').value);
+  const errorMsg = document.getElementById('errorMsg');
+  const resultCard = document.getElementById('resultCard');
+  errorMsg.classList.remove('show');
+  resultCard.classList.remove('show');
+  if (!id) { errorMsg.textContent = 'Please enter your Student ID'; errorMsg.classList.add('show'); return; }
+  const student = students.find(s => s[0] === id);
+  if (!student) { errorMsg.textContent = 'Student ID not found. Please check and try again.'; errorMsg.classList.add('show'); return; }
+  const ranked = sorted.filter(s => s[3] > 0);
+  const rankIdx = ranked.findIndex(s => s[0] === id);
+  const rank = rankIdx + 1;
+  const total = ranked.length;
+  document.getElementById('resultName').textContent = student[1];
+  document.getElementById('resultPoints').textContent = student[3].toLocaleString();
+  document.getElementById('resultExercises').textContent = student[2];
+  document.getElementById('resultRank').textContent = student[3] > 0 ? `#${rank} of ${total}` : 'Start now!';
+  const breakdown = document.getElementById('pointsBreakdown');
+  if (student[4] > 0 || student[5] > 0) {
+    breakdown.innerHTML = `📊 Points breakdown: <span>${student[4]} NCERT × 11pts = ${student[4]*11}</span> + <span>${student[5]} Module/APPS × 21pts = ${student[5]*21}</span>`;
+    breakdown.style.display = 'block';
+  } else {
+    breakdown.style.display = 'none';
+  }
+
+  resultCard.classList.add('show');
+  setTimeout(() => resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+}
+
+
+function createParticles() {
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 15; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    p.style.width = p.style.height = (Math.random() * 3 + 1) + 'px';
+    container.appendChild(p);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  buildLeaderboard();
+  createParticles();
+  document.getElementById('studentId').addEventListener('keypress', e => { if (e.key === 'Enter') lookupStudent(); });
+});
+</script>
+</body>
+</html>
